@@ -1,0 +1,194 @@
+#  File Transfer Using TCP Sockets #
+
+# Introduction
+
+This project demonstrates how a file can be transferred from one system to another over a network using TCP sockets. It is based on the client-server architecture, where one program (client) sends data and another program (server) receives it.
+
+The main objective is to understand how reliable communication takes place in computer networks using TCP protocol and socket programming.
+
+
+
+# Client-Server Architecture
+
+The system is divided into two parts:
+
+# Client
+
+* Initiates the connection
+* Selects and sends the file
+* Sends file information (name and size)
+* Displays progress of file transfer
+
+# Server
+
+* Starts first and waits for connections
+* Accepts incoming client connections
+* Receives file data
+* Reconstructs and saves the file
+
+This model is widely used in real-world applications like web servers, file sharing systems, and messaging apps.
+
+
+# Socket Programming
+
+Sockets act as a communication endpoint between two systems.
+
+### In this project:
+
+* The **server socket**:
+
+  * `socket()` → creates socket
+  * `bind()` → attaches to IP and port
+  * `listen()` → waits for connection
+  * `accept()` → accepts client
+
+* The **client socket**:
+
+  * `socket()` → creates socket
+  * `connect()` → connects to server
+
+# Data Transfer:
+
+* `send()` → sends data
+* `recv()` → receives data
+
+Sockets enable direct communication between programs over a network.
+
+
+
+# TCP Protocol
+
+TCP (Transmission Control Protocol) is used for communication in this project.
+
+# Key features:
+
+* **Reliable** → ensures no data is lost
+* **Ordered delivery** → data arrives in correct sequence
+* **Error checking** → ensures correct transmission
+* **Connection-oriented** → connection established before data transfer
+
+TCP guarantees that the file sent by the client is received completely by the server.
+
+
+
+# Data Transmission in Chunks
+
+Files are not sent as a whole. Instead, they are divided into smaller parts called **chunks**.
+
+* Each chunk size = 1024 bytes (1 KB)
+* Data is sent repeatedly in a loop
+* Server receives and reconstructs the file
+
+# Why chunks are used:
+
+* Efficient memory usage
+* Suitable for large files
+* Continuous streaming of data
+
+
+
+# File Handling
+
+File handling is used to read and write data.
+
+# Client Side:
+
+* Opens file in **binary read mode (`rb`)**
+* Reads file chunk by chunk
+
+# Server Side:
+
+* Opens file in **binary write mode (`wb`)**
+* Writes received data
+
+Binary mode ensures that all file types (text, images, PDFs) are handled correctly.
+
+-
+# File Metadata (Important Step)
+
+Before sending the file data, the client sends:
+
+1. File Name
+2. File Size
+
+# Purpose:
+
+* Server knows how much data to expect
+* Server saves file with correct name
+
+This helps maintain proper structure and avoids errors during transfer.
+
+
+
+# Flow of Execution
+
+1. Server starts and listens on a port
+2. Client connects to server
+3. Client sends file name
+4. Server acknowledges
+5. Client sends file size
+6. File is sent in chunks
+7. Server receives and writes data
+8. Progress is displayed
+9. File transfer completes
+
+
+
+# Multi-Client Support (Threading)
+
+The server is designed to handle multiple clients simultaneously.
+
+# How it works:
+
+* Each client connection is handled by a separate thread
+* Server can process multiple file transfers at the same time
+
+# Benefit:
+
+* Improves performance
+* Simulates real-world server behavior
+
+
+# Graphical User Interface (GUI)
+
+A GUI is implemented using Tkinter to improve usability.
+
+# Features:
+
+* File selection using file dialog
+* Buttons for user interaction
+* Progress bar for file transfer
+* Status messages
+
+This makes the system user-friendly and easier to operate.
+
+
+
+# Challenges Faced
+
+* Synchronization issues in TCP stream
+* Handling file metadata correctly
+* Managing multiple clients using threads
+* Ensuring proper file reconstruction
+
+These were solved by structuring communication and using controlled data flow.
+
+
+
+# Real-World Applications
+
+This project is similar to:
+
+* File Transfer Protocol (FTP)
+* Cloud storage systems (Google Drive, Dropbox)
+* Messaging apps (WhatsApp file sharing)
+* Client-server applications
+
+
+
+# Conclusion
+
+This project demonstrates how file transfer is achieved using TCP sockets in a client-server model. It highlights key networking concepts such as reliable communication, socket programming, data transmission, and multi-client handling.
+
+It provides a practical understanding of how real-world applications transfer data efficiently over networks.
+
