@@ -14,12 +14,12 @@ filesize = os.path.getsize(filename)
 client.send(filename.encode())
 client.recv(1024)
 
-time.sleep(0.1)  # 👈 ADD THIS
+time.sleep(0.1) 
 
 # send filesize
 client.send(str(filesize).encode())
 
-time.sleep(0.1)  # 👈 ADD THIS
+time.sleep(0.1)
 
 # open file
 file = open(filename, "rb")
